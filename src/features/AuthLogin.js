@@ -24,8 +24,8 @@ import { Toast } from "../layout/Util";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 
-const MATRIC_NUM = process.env.MATRIC_NUM ?? "123456789";
-const PASSWORD = process.env.PASSWORD ?? "PASSWORD";
+const REACT_APP_MATRIC_NUM = process.env.REACT_APP_MATRIC_NUM ?? "123456789";
+const PASSWORD = process.env.REACT_APP_PASSWORD ?? "PASSWORD";
 
 function AuthLogin() {
   const [token, setToken] = useLocalStorage("token", null);
@@ -34,7 +34,7 @@ function AuthLogin() {
 
   useEffect(() => {
     // eslint-disable-next-line eqeqeq
-    if (token && token == MATRIC_NUM) navigate("/dashboard");
+    if (token && token == REACT_APP_MATRIC_NUM) navigate("/dashboard");
   }, [navigate, token]);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -43,12 +43,12 @@ function AuthLogin() {
   const onHandleMouseDownPassword = (e) => e.preventDefault();
 
   const [error, setError] = useState({
-    matric_num: "",
+    REACT_APP_MATRIC_NUM: "",
     password: "",
   });
 
   const [data, setData] = useState({
-    matric_num: "",
+    REACT_APP_MATRIC_NUM: "",
     password: "",
   });
 
@@ -57,28 +57,28 @@ function AuthLogin() {
   const handleClick = () => {
     let err = {
       password: "",
-      matric_num: "",
+      REACT_APP_MATRIC_NUM: "",
     };
     if (!data.password.length > 0) {
       err.password = "Password cannot be empty";
     }
-    if (!data.matric_num.length > 0) {
-      err.matric_num = "Matric number cannot be empty";
+    if (!data.REACT_APP_MATRIC_NUM.length > 0) {
+      err.REACT_APP_MATRIC_NUM = "Matric number cannot be empty";
     }
     setError(err);
 
-    if (!error.password && !error.matric_num) {
+    if (!error.password && !error.REACT_APP_MATRIC_NUM) {
       setIsLoading(true);
       setTimeout(() => {
         if (
-          data.matric_num.trim() === MATRIC_NUM &&
+          data.REACT_APP_MATRIC_NUM.trim() === REACT_APP_MATRIC_NUM &&
           data.password.trim() === PASSWORD
         ) {
           setData({
-            matric_num: "",
+            REACT_APP_MATRIC_NUM: "",
             password: "",
           });
-          setToken(data.matric_num);
+          setToken(data.REACT_APP_MATRIC_NUM);
           navigate("/dashboard", { replace: true });
           Toast.fire({
             icon: "success",
@@ -86,7 +86,7 @@ function AuthLogin() {
           });
           console.log("success");
         } else {
-          setError({ ...error, matric_num: "Invalid Credentials" });
+          setError({ ...error, REACT_APP_MATRIC_NUM: "Invalid Credentials" });
         }
         setIsLoading(false);
       }, 700);
@@ -94,8 +94,8 @@ function AuthLogin() {
   };
 
   useEffect(() => {
-    if (error?.matric_num) {
-      setError({ ...error, matric_num: "" });
+    if (error?.REACT_APP_MATRIC_NUM) {
+      setError({ ...error, REACT_APP_MATRIC_NUM: "" });
     }
     if (error?.password) {
       setError({ ...error?.password, password: "" });
@@ -122,14 +122,14 @@ function AuthLogin() {
               <Stack spacing={2}>
                 <FormControl>
                   <TextField
-                    error={error?.matric_num ? true : false}
+                    error={error?.REACT_APP_MATRIC_NUM ? true : false}
                     label={"Matric Number"}
                     variant="filled"
                     type={"text"}
-                    value={data.matric_num}
+                    value={data.REACT_APP_MATRIC_NUM}
                     autoComplete={"off"}
                     onChange={(e) =>
-                      setData({ ...data, matric_num: e.target.value })
+                      setData({ ...data, REACT_APP_MATRIC_NUM: e.target.value })
                     }
                   />
                   <Label
@@ -137,7 +137,10 @@ function AuthLogin() {
                     role={"alert"}
                   >
                     <strong>
-                      <i>{error?.matric_num && error?.matric_num}</i>
+                      <i>
+                        {error?.REACT_APP_MATRIC_NUM &&
+                          error?.REACT_APP_MATRIC_NUM}
+                      </i>
                     </strong>
                   </Label>
                 </FormControl>

@@ -4,7 +4,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 const RoutesWare = () => {
   const [token] = useLocalStorage("token", null);
-  const saved_token = process.env.MATRIC_NUM ?? 123456789;
+  const saved_token = process.env.REACT_APP_MATRIC_NUM ?? 123456789;
   const navigate = useNavigate();
 
   const [isAuth, setIsAuth] = useState(false);

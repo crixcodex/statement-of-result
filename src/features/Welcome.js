@@ -10,14 +10,14 @@ import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 function Welcome() {
   const [token] = useLocalStorage("token", null);
-  const MATRIC_NUM = process.env.MATRIC_NUM ?? "123456789";
+  const REACT_APP_MATRIC_NUM = process.env.REACT_APP_MATRIC_NUM ?? "123456789";
   const navigate = useNavigate();
 
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line eqeqeq
-    if (token && token == MATRIC_NUM) setIsAuth(true);
+    if (token && token == REACT_APP_MATRIC_NUM) setIsAuth(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

@@ -19,7 +19,7 @@ function Header({ ...props }) {
 
   const [isAuth, setIsAuth] = useState(false);
   useEffect(() => {
-    const mac_num = process.env.MATRIC_NUM ?? 123456789;
+    const mac_num = process.env.REACT_APP_MATRIC_NUM ?? 123456789;
     if (!token) setIsAuth(false);
     // eslint-disable-next-line eqeqeq
     else if (mac_num == token) setIsAuth(true);
