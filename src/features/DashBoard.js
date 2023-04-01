@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../layout/Header";
 import PageContainer from "../layout/PageContainer";
-import PDFFILE from "./FRANCISCA_SATEMENT_OF_RESULT.pdf";
+import PDFFILE from "./JAVA.pdf";
 
 function DashBoard() {
   return (
