@@ -42,32 +42,34 @@ function Header({ ...props }) {
   return (
     <React.Fragment>
       <Head {...props} />
-      <Navbar className="px-5 " color="primary">
-        <NavbarBrand className="text-white">
-          <strong>SCHOOL RESULT</strong>
-        </NavbarBrand>
-        <Nav>
-          <NavItem>
-            {!isAuth && (
-              <NavLink
-                to={"/login"}
-                className={"link-light  text-decoration-none"}
-              >
-                Login <IoLogInOutline size={20} />
-              </NavLink>
-            )}
-            {isAuth && (
-              <NavLink
-                to={"#"}
-                onClick={() => onLogOut()}
-                className={"link-light  text-decoration-none"}
-              >
-                Logout <IoLogInOutline size={20} />
-              </NavLink>
-            )}
-          </NavItem>
-        </Nav>
-      </Navbar>
+      {props.showMainHeader === false ? null : (
+        <Navbar className="px-5 " color="primary">
+          <NavbarBrand className="text-white">
+            <strong>SCHOOL RESULT</strong>
+          </NavbarBrand>
+          <Nav>
+            <NavItem>
+              {!isAuth && (
+                <NavLink
+                  to={"/login"}
+                  className={"link-light  text-decoration-none"}
+                >
+                  Login <IoLogInOutline size={20} />
+                </NavLink>
+              )}
+              {isAuth && (
+                <NavLink
+                  to={"#"}
+                  onClick={() => onLogOut()}
+                  className={"link-light  text-decoration-none"}
+                >
+                  Logout <IoLogInOutline size={20} />
+                </NavLink>
+              )}
+            </NavItem>
+          </Nav>
+        </Navbar>
+      )}
       <Navbar sticky={"top"} className="shadow px-4" color="light">
         <Nav className="">
           {isAuth && (
